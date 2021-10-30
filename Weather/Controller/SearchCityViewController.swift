@@ -75,7 +75,7 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, UITableVi
             for city in json.arrayValue {
                 let newCity = CityInfo()
                 
-                newCity.key = city["key"].stringValue
+                newCity.key = city["Key"].stringValue
                 newCity.type = city["Type"].stringValue
                 newCity.localizedName = city["LocalizedName"].stringValue
                 newCity.administrativeID = city["AdministrativeArea"]["ID"].stringValue
@@ -93,12 +93,13 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // You will get the Index of the city info from here and then add it into the realm Database
         // Once the city is added in the realm DB pop the navigation view controller
-        let city = arrCityInfo[indexPath.row]
+        let selectCity = self.arrCityInfo[indexPath.row]
+        print("select row: \(selectCity)")
 
         do {
             let realm = try! Realm()
             try realm.write{
-                realm.add(city)
+                realm.add(selectCity)
             }
             
             let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -106,7 +107,7 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate, UITableVi
         
             self.navigationController?.pushViewController(destination, animated: true)
         } catch {
-            print("Error in initializing realm")
+            print("Error!")
         }
     }
     

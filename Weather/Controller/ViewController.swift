@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        deletedObjectsFromRealmDb()
+//        deletedObjectsFromRealmDb()
         return arrCurrentWeather.count // You will replace this with arrCurrentWeather.count
 //        return arr.count
     }
